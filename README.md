@@ -6,8 +6,7 @@ HTML5 game
 TODO
 ----
 
-	1. Colision
-		a. Colision particle - player
-		b. Colision player - border
+	1. Collision
+		a. Collision particle - player
 	2. Score
 	3. Bonus

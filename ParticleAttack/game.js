@@ -1,6 +1,6 @@
 window.onload = function(){
 	//canvas init
-	var canvas = document.getElementById("cv");
+	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
 
 	//get dimessions
@@ -14,12 +14,8 @@ window.onload = function(){
 	var particles = [];
 
 	//player
-	var player = {
-		x: w / 2,
-		y: h / 2,
-		s: 10,
-		speed: 5
-	};
+	var player = new Rectangle(w / 2, w /2, 10, 10);
+	player.speed = 5;
 
 
 	//init particles
@@ -27,7 +23,7 @@ window.onload = function(){
 	{
 		particles.push({
 			x: Math.random() * w,
-			y: Math.random() * h - h,
+			y: Math.random() * h - h, //start on top screen
 			r: Math.random() * 4 + 2, //radius
 			d: Math.random() * maxParticle //density
 		});
@@ -60,26 +56,15 @@ window.onload = function(){
 		//draw particles
 		ctx.fillStyle = "rgba(22, 55, 221, 0.8)";
 		ctx.beginPath();
-
 		for (var i = 0; i < maxParticle; i++)
 		{
 			var particle = particles[i];
 			ctx.moveTo(particle.x, particle.y);
 			ctx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2, true);
 		}
-
 		ctx.fill();
 
-
-		//draw player
-		ctx.fillStyle = "rgba(122, 15, 21, 0.8)";
-		ctx.beginPath();
-
-		ctx.moveTo(player.x, player.y);
-		ctx.fillRect(player.x, player.y, player.s, player.s);
-
-		ctx.fill();
-
+		player.Draw(ctx, "rgba(122, 15, 21, 0.8)");
 
 		update();
 	}
@@ -101,6 +86,16 @@ window.onload = function(){
 		if (39 in keysDown) { // Player holding right
 			player.x += 1 * player.speed;
 		}
+
+
+		if(player.x < 0)
+			player.x = 0;
+		if(player.y < 0)
+			player.y = 0;
+		if(player.x + player.w > w)
+			player.x = w - player.w;
+		if(player.y + player.h > h)
+			player.y = h - player.h;
 
 
 		angle += 0.01;
