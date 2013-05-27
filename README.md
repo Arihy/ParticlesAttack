@@ -7,7 +7,7 @@ TODO
 ----
 
 	1. Colision
-	1.. Colision particle - player
-	2.. Colision player - border
+		a. Colision particle - player
+		b. Colision player - border
 	2. Score
 	3. Bonus
