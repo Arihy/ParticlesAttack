@@ -24,7 +24,7 @@ window.onload = function(){
 		particles.push({
 			x: Math.random() * w,
 			y: Math.random() * h - h, //start on top screen
-			r: Math.random() * 4 + 2, //radius
+			radius: Math.random() * 4 + 2, //radius
 			d: Math.random() * maxParticle //density
 		});
 	}
@@ -60,7 +60,7 @@ window.onload = function(){
 		{
 			var particle = particles[i];
 			ctx.moveTo(particle.x, particle.y);
-			ctx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2, true);
+			ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2, true);
 		}
 		ctx.fill();
 
@@ -102,7 +102,7 @@ window.onload = function(){
 		for (var i = 0; i < maxParticle; i++)
 		{
 			var particle = particles[i];
-			particle.y += Math.cos(angle+particle.d) + 1 + particle.r / 2;
+			particle.y += Math.cos(angle+particle.d) + 1 + particle.radius / 2;
 			particle.x += Math.sin(angle) * 2;
 
 			//particles back on the top when its move out the screen.
@@ -113,7 +113,7 @@ window.onload = function(){
 					particles[i] = {
 						x: Math.random() * w,
 						y: -10,
-						r: particle.r,
+						radius: particle.radius,
 						d: particle.d
 					};
 				}
@@ -126,7 +126,7 @@ window.onload = function(){
 						particles[i] = {
 							x: -5,
 							y: Math.random() * h,
-							r: particle.r,
+							radius: particle.radius,
 							d: particle.d
 						};
 					}
@@ -136,14 +136,15 @@ window.onload = function(){
 						particles[i] = {
 							x: w+5,
 							y: Math.random() * h,
-							r: particle.r,
+							radius: particle.radius,
 							d: particle.d
 						};
 					}
 				}
-
-				
 			}
+
+			if(player.Intersects(particle))
+				document.location.reload();
 		}
 	}
 

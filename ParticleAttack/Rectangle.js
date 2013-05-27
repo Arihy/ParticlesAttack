@@ -26,11 +26,12 @@ Rectangle = function(_x, _y, _w, _h)
 		{
 			return true;
 		}
+		/*
 		else if(_shape.Contains(this.x - offset, this.y - offset) || _shape.Contains(this.x + this.w - offset, this.y - offset) ||
 			_shape.Contains(this.x - offset, this.y + this.h - offset) || _shape.Contains(this.x + this.w - offset, this.y + this.h - offset))
 		{
 			return true;
-		}
+		}*/
 
 		return false;
 	}
