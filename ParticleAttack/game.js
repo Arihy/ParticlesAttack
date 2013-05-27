@@ -17,6 +17,8 @@ window.onload = function(){
 	var player = new Rectangle(w / 2, w /2, 10, 10);
 	player.speed = 5;
 
+	var score = 0;
+
 
 	//init particles
 	for(var i = 0; i < maxParticle; i++)
@@ -66,6 +68,9 @@ window.onload = function(){
 
 		player.Draw(ctx, "rgba(122, 15, 21, 0.8)");
 
+		var score_text = "Score: " + score;
+		ctx.fillText(score_text, 5, h-5);
+
 		update();
 	}
 
@@ -97,6 +102,7 @@ window.onload = function(){
 		if(player.y + player.h > h)
 			player.y = h - player.h;
 
+		score++;
 
 		angle += 0.01;
 		for (var i = 0; i < maxParticle; i++)
